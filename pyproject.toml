@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "rb2024-lookanotherdev"
+version = "0.1.0"
+description = "Minha submissão para a Rinha de Backend 2024"
+authors = ["André Carvalho <alac1984@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "rb2024_lookanotherdev"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+starlette = "^0.37.1"
+uvicorn = "^0.27.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
