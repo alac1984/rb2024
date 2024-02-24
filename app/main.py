@@ -1,12 +1,8 @@
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
-from starlette.routing import Route
+
+from .routes import api_routes
 
 
-async def homepage(request):
-    return JSONResponse({'hello': 'world'})
 
-
-app = Starlette(debug=True, routes=[
-    Route('/', homepage),
-])
+app = Starlette(debug=True, routes=api_routes)
