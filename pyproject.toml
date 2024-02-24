@@ -11,6 +11,7 @@ packages = [{include = "rb2024_lookanotherdev"}]
 python = "^3.12"
 starlette = "^0.37.1"
 uvicorn = "^0.27.1"
+asyncpg = "^0.29.0"
 
 
 [build-system]
