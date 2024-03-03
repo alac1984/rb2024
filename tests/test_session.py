@@ -7,6 +7,9 @@ from app.session import DatabaseSession
 async def test_session_object():
     async with DatabaseSession() as session:
         assert session is not None
+        assert session.conn is not None
+
+    assert session.conn.is_closed()
 
 
 @pytest.mark.asyncio
