@@ -1,10 +1,15 @@
 from starlette.routing import Route
 from starlette.responses import JSONResponse
 
-async def homepage(request):
-    return JSONResponse({'hello': 'world!'})
+from .db import ...
+from .repository import repo_transacoes
+
+async def transacoes(request):
+    id_cliente = request.path_params['id_cliente']
+
+    transacoes = repo_transacoes(
 
 
 api_routes = [
-    Route('/', homepage),
- ]
+    Route('/clientes/{id_cliente}/transacoes', transacoes),
+]
