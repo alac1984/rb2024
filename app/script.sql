@@ -9,6 +9,7 @@ create table if not exists transacoes (
     id int primary key generated always as identity,
     cliente_id int references clientes(id),
     tipo char(1),
+    valor int,
     descricao varchar(10),
     realizada_em timestamptz default now()
 );
