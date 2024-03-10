@@ -1,16 +1,13 @@
-import os
 import asyncpg
-
-from .config import app_config
 
 
 class DatabaseSession:
-    def __init__(self, dsn=app_config.DB_DNS):
-        self.dsn = dsn
+    def __init__(self, dns: str):
+        self.dns = dns
         self.conn = None
 
     async def __aenter__(self):
-        self.conn = await asyncpg.connect(self.dsn)
+        self.conn = await asyncpg.connect(self.dns)
         return self
 
     async def __aexit__(self, exc_type, exc, tb):

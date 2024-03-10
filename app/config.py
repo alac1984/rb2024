@@ -1,23 +1,23 @@
 import os
-from dataclasses import dataclass
 from dotenv import load_dotenv
 
 
 load_dotenv()
 
 
-@dataclass
-class Config:
-    DB_USER: str | None = os.getenv('POSTGRES_USER')
-    DB_PASS: str | None = os.getenv('POSTGRES_PASSWORD')
-    DB_DB: str | None = os.getenv('POSTGRES_DB')
-    DB_HOST: str | None = os.getenv('POSTGRES_HOST')
+def get_dns(
+    db_hostname: str | None = os.getenv('DB_HOSTNAME'),
+    db_user: str | None = os.getenv('DB_USER'),
+    db_pass: str | None = os.getenv('DB_PASS'),
+    db_port: str | None = os.getenv('DB_PORT'),
+    db_db: str | None = os.getenv('DB_DB')
+) -> str | None:
+    return f"postgresql://{db_user}:{db_pass}@{db_hostname}:{db_port}/{db_db}"
 
-    def __post_init__(self):
-        self.DB_DNS = (
-            f"postgresql://{self.DB_USER}:{self.DB_PASS}"
-            f"@{self.DB_HOST}:5432/{self.DB_DB}"
-        )
+
+class Config:
+    def __init__(self, dns: str | None) -> None:
+        self.dns = dns
 
     def __repr__(self):
         return "Config()"
@@ -26,4 +26,4 @@ class Config:
         return self.__repr__()
 
 
-app_config = Config()
+app_config = Config(get_dns())
